@@ -1,0 +1,10 @@
+.headerleft{
+   min-height: 650px;
+}
+.headerright{
+    height: 100px;
+}
+.logout{
+    height: 65px;
+    width: 255px;
+}

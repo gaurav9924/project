@@ -1,0 +1,15 @@
+.header{
+    background: #15171c;
+}
+.all{
+    margin-left: -95px;
+    line-height: 71px;
+    color: white;
+    text-decoration: none;
+  
+}
+.headertext:hover{
+    
+color: red !important;
+
+}

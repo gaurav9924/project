@@ -1,0 +1,59 @@
+.abc{
+    min-height: 592px !important;
+    margin-top: 100px;
+    width: 480px !important;
+}
+.txt{
+  height: 60px;
+  width: 80%;
+margin-top: 20px;
+margin-left: 30px;
+}
+.login{
+    font-size:25px;
+    margin-top: -14px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.inptxt{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} 
+.rg{
+    margin-top: 11px;
+    margin-left: 30px;
+    width: 80% !important;
+} 
+.btn{
+    margin-top: 11px;
+    margin-left: 30px;
+    width: 80% !important;
+}
+.acc{
+    margin-top:20px;
+    margin-left: 95px;
+}
+.dropdown{
+    width: 100%;
+   margin-top: -5px;
+   
+}
+.dropdownitem{
+    width: 80%;
+    padding: auto;
+    text-align: center;
+    background-color: aquamarine;
+  
+}
+.loginhere{
+margin-top: -42px;
+    margin-left: 73px;
+}
+.form-error{
+    color: red;
+    font-size: 11px;
+    margin-top: -46px;
+  
+   
+    
+}

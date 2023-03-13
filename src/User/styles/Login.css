@@ -1,0 +1,41 @@
+.ab{
+    height: 490px !important;
+
+    margin-top: 100px;
+    width: 480px !important;
+}
+.txt{
+  height: 60px;
+  width: 80%;
+margin-top: 24px;
+margin-left: 30px;
+}
+.login{
+    font-size:30px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.inptxt{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} 
+.lg{
+    margin-top: 41px !important;
+    margin-left: 30px;
+    width: 80% !important;
+}
+
+
+
+.acc{
+    margin-top: 20px;
+    margin-left: 95px;
+}
+.form-error-lg{
+    color: red;
+    font-size: 11px;
+    margin-top: -47px;
+  
+   
+    
+}
