@@ -7,7 +7,7 @@ import * as RiIcons from 'react-icons/ri';
 export const SidebarData = [
   {
     title: 'All_Courses',
-    path: '/all_courses',
+    path: '/instructor_all_courses',
     icon: <AiIcons.AiFillHome />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -58,8 +58,8 @@ export const SidebarData = [
 //     icon: <FaIcons.FaCartPlus />
 //   },
   {
-    title: 'My_Courses',
-    path: '/my_courses',
+    title: 'Add_Courses',
+    path: '/instructor_add_courses',
     icon: <IoIcons.IoMdPeople />
   },
 //   {
@@ -85,13 +85,13 @@ export const SidebarData = [
 //   },
   {
     title: 'Settings',
-    path: '/setting',
+    path: '/instructor_setting',
     icon: <IoIcons.IoMdHelpCircle />
   },
 
   {
     title: 'Logout',
-    path: '/logout',
+    path: '/',
     icon: <IoIcons.IoMdHelpCircle />
     
 

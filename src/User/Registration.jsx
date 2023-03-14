@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import axios from "axios";
 import "./styles/Registration.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -10,69 +11,89 @@ import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
 
 const initialValues = {
-  name: "",
+  fullName: "",
   email: "",
   password: "",
   confirm_password: "",
-  role: "student",
+  role: 0,
 };
 const Registration = () => {
+  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const loadPost = async () => {
+      setLoading(true);
+
+      const response = await axios.get(
+        "https://localhost:7037/api/Login/GetRoleTypes"
+      );
+
+      const success = response.data;
+      setPosts(response.data.data);
+      // debugger;
+      // console.log(success);
+
+      setLoading(false);
+    };
+
+    loadPost();
+  }, []);
+
+  //   return (
+  //       <>
+  //           <div className="App">
+  //               {loading ? (
+  //                   <h4>Loading...</h4>) :
+  //                   (posts.map((item) =>
+  //                       // Presently we only fetch
+  //                       // title from the API
+  //                       <h4>{item}</h4>)
+  //                   )
+  //               }
+  //           </div>
+  //       </>
+  //   );
+
   const { values, errors, handleBlur, handleChange, touched, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: signUpSchema,
 
       onSubmit: (values, action) => {
-        // debugger
         toast.success("User Registered");
-        navigate("/studenthomepage");
+
+        //  console.log(posts)
+        // navigate("/");
         console.log(values);
         action.resetForm();
       },
     });
-  // console.log(errors)
 
+  function saveUser() {
+    let totalData = values ;
+    // debugger;
+    console.log(totalData);
+    fetch("https://localhost:7037/api/Login/SignUp", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(totalData),
+    }).then((result) => {
+      // console.log("result", result);
+      result.json().then((resp) => {
+        console.log("resp", resp);
+      });
+    });
+  }
   const navigate = useNavigate();
-
-  // const [fullname, setfullname] = useState("")
-  // const [email, setEmail] = useState("")
-  // const [role,setRole] = useState("")
-
-  // const [password, setPassword] = useState("")
-  // const [confirmpassword, setconfirmPassword] = useState("")
-
-  // const handleSubmitForm=(e)=>{
-  //   e.preventDefault();
-  //   if(fullname === ""){
-  //     toast.error("FullName is required")
-  //   }else if(email === ""){
-  //     toast.error("email is required")
-  //   }
-  //   else if(password === ""){
-  //     toast.error("password is required")
-  //   }else if(confirmpassword === ""){
-  //     toast.error("confirmpassword is required")
-  //   }else  if(password ===confirmpassword ){
-  //          localStorage.setItem('fullname',fullname)
-  //      localStorage.setItem('email',email)
-  //     //  localStorage.setItem('role',role)
-  //      localStorage.setItem('password',password)
-  //      localStorage.setItem('confirmpassword',confirmpassword)
-  //
-  //
-
-  //     // navigate("/registration")69
-  //   }else{
-  //     toast.error("Invalid Email Or Password")
-  //   }
-
-  // }
-  // const handleSubmitForm=(e)=>{
-
-  // }
 
   return (
     <>
+      <div className="App">{/* {loading ? <h4>Loading...</h4> :  } */}</div>
+
       <div className="container bg-light border border-dark rounded abc p-4 shadow p-3 mb-5 bg-white rounded">
         <div className="text-center login mb-3 text-info">Welcome To LMS</div>
         <div className="login fs-5">Register Here</div>
@@ -82,14 +103,14 @@ const Registration = () => {
             <input
               type="text"
               className="form-control shadow  bg-white p-2 mb-5 rounded"
-              name="name"
-              value={values.name}
+              name="fullName"
+              value={values.fullName}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Enter Your Full Name"
             />
-            {errors.name && touched.name ? (
-              <p className="form-error">{errors.name}</p>
+            {errors.fullName && touched.fullName ? (
+              <p className="form-error">{errors.fullName}</p>
             ) : null}
           </div>
 
@@ -149,22 +170,26 @@ const Registration = () => {
               onBlur={handleBlur}
               aria-label="Default select example"
             >
-              <option selected>Who You Are?</option>
-              <option value="instructor">Instructor</option>
-              <option value="student">Student</option>
+              {posts.map((item, index) => (
+                <option value={item.id} key={item.id}>
+                  {item.roleName}
+                </option>
+              ))}
             </select>
           </div>
 
           <button
             type="submit "
             className="btn btn-primary shadow  rg p-2 mb-5 rounded"
+            onClick={saveUser}
             // onClick={handleSubmitForm}
           >
             Register Now
           </button>
-          <div className=" loginhere">
-            Already Have an Account?{" "}
-            <NavLink to="/" onClick={() => navigate("/")}>
+          <div className="loginhere">
+            Already Have an Account?
+            <NavLink to="/">
+              {/* () => navigate("/") */}
               Login Here
             </NavLink>
           </div>

@@ -91,7 +91,7 @@ export const SidebarData = [
 
   {
     title: 'Logout',
-    path: '/logout',
+    path: '/',
     icon: <IoIcons.IoMdHelpCircle />
     
 

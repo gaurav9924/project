@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from '../components/Sidebar';
 import "./Setting.css"
 
-const Setting = () => {
+const Instructor_Setting = () => {
   return (
     <div className='home'>
       <Sidebar/>
@@ -81,29 +81,15 @@ const Setting = () => {
           </div>
           <div className='row '>
         <div className='col-sm-6'>
-          <div className='row'>
-          
       <div className=" txt form-group fullname">
-   
             <span className=" inptxt">Gender</span>
-            <div className='col-sm-3'>
-            <div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-  <label class="form-check-label" for="flexRadioDefault1">
-    Male
-  </label>
-</div>
-</div>
-<div className='col-sm-3'>
-<div class="form-check">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-  <label class="form-check-label" for="flexRadioDefault2">
-    Female
-  </label>
-  </div>
-</div>
-</div>
-            
+            <input
+              type="text"
+              className="form-control  bg-white p-2 mb-5 rounded"
+              name="name"
+             
+              placeholder="Enter Your Full Name"
+            />
             {/* {errors.name && touched.name ? (
               <p className="form-error">{errors.name}</p>
             ) : null} */}
@@ -161,4 +147,4 @@ const Setting = () => {
   );
 };
 
-export default Setting;
+export default Instructor_Setting;

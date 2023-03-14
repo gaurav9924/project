@@ -6,7 +6,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
 
-const My_Courses = () => {
+const Instructor_Add_Courses = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
@@ -38,9 +38,9 @@ const My_Courses = () => {
       <div className="home">
         <Sidebar />
 <div className="container  my-3 t">
-        <h1 className="text-center shadow pb-2" style={{color:"#c30d0d",fontFamily:"auto"}}>My Courses</h1>
+        <h1 className="text-center shadow pb-2" style={{color:"#c30d0d",fontFamily:"auto"}}>Add Courses</h1>
       
-        <div className="row mt-3">
+        {/* <div className="row mt-3">
           {loading ? (
             <h4>Loading...</h4>
           ) : (
@@ -54,11 +54,11 @@ const My_Courses = () => {
               }
             )
           )}
-        </div>
+        </div> */}
       </div>
       </div>
     </>
   );
 };
 
-export default My_Courses;
+export default Instructor_Add_Courses;

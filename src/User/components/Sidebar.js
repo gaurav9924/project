@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
@@ -82,8 +82,8 @@ const Sidebar = () => {
       <div className='col-sm-5 all'>
         <div className='row'>
           <div className='col-sm-3'>
-        <Link className='headertext' to="all_courses" style={{textDecoration:"none" ,color:"white"}}> All Courses</Link></div>
-        <div  className='col-sm-3 ms-5'> <Link to="my_courses" className='headertext' style={{textDecoration:"none" ,color:"white"}}> My Courses</Link></div></div>
+        <NavLink className='headertext' to="/all_courses" style={{textDecoration:"none" ,color:"white"}}> All Courses</NavLink></div>
+        <div  className='col-sm-3 ms-5'> <NavLink to="/my_courses" className='headertext' style={{textDecoration:"none" ,color:"white"}}> My Courses</NavLink></div></div>
 
       </div>
       </div>

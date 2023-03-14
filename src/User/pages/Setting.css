@@ -1,0 +1,18 @@
+.column{
+    height: 414px;
+    width: 1120px;
+    margin-left: 10px;
+}
+.fullname{
+    margin-left: 70px;
+}
+.address{
+    height: 80px;
+    width: 427px;
+}
+.update{
+    height: 50px;
+    width: 10px;
+    margin-top: 44px;
+ 
+}

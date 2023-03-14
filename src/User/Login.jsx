@@ -33,50 +33,18 @@ const Login = () => {
       if (values.email!=="" && values.password!==""&& values.confirm_password!==""){
 console.log(values)
 toast.success("User Login Successfull ")}
-  // navigate("/studenthomepage")
+  // navigate("/my_courses")
     }
 
   const navigate = useNavigate();
 
-  // const navigate = useNavigate();
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmpassword, setconfirmPassword] = useState("");
-
-  //getting email password
-
-  // const userName=localStorage.getItem('email')
-  // ?localStorage.getItem('email'):'admin@admin.com'
-
-  // const userPassword=localStorage.getItem('password')
-  // ?localStorage.getItem('password'):'admin'
-
-  // const handlesubmit = (event) => {
-  //   if(email === ""){
-  //     toast.error("email is required")
-  //   }
-  //   else if(password === ""){
-  //     toast.error("password is required")
-  //   }else if(confirmpassword === ""){
-  //     toast.error("confirmpassword is required")
-  //   }else  if(password ===confirmpassword ){
-
-  //      localStorage.setItem('email',email)
-  //      localStorage.setItem('password',password)
-  //      localStorage.setItem('confirmpassword',confirmpassword)
-
-  //     // navigate("/registration")69
-  //   }else{
-  //     toast.error("Invalid Email Or Password")
-  //   }
-  // };
 
   return (
     <>
-      <div className="container bg-light border border-dark rounded ab p-4 shadow p-3 mb-5 bg-white rounded">
-        <div className="login">Login Here</div>
+      <div className="container bg-light  rounded ab p-4 shadow p-3 mb-5 bg-white rounded">
+        <div className="login mt-2">Login Here</div>
         <form onSubmit={handleSubmit}>
-          <div className=" txt form-group">
+          <div className=" txt-login form-group">
             <span className="fs-5 inptxt ">Email</span>
             <input
               type="email"
@@ -91,7 +59,7 @@ toast.success("User Login Successfull ")}
               <p className="form-error-lg">{errors.email}</p>
             ) : null}
           </div>
-          <div className=" txt form-group">
+          <div className=" txt-login form-group">
             <span className="fs-5 inptxt">Password</span>
             <input
               type="password"
@@ -106,7 +74,7 @@ toast.success("User Login Successfull ")}
               <p className="form-error-lg">{errors.password}</p>
             ) : null}
           </div>
-          <div className=" txt fs-5 form-group">
+          <div className=" txt-login fs-5 form-group">
             <span className=" inptxt"> Confirm Password</span>
             <input
               type="password"

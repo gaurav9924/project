@@ -1,13 +1,13 @@
 .ab{
-    height: 490px !important;
+    height: 511px !important;
 
     margin-top: 100px;
     width: 480px !important;
 }
-.txt{
+.txt-login{
   height: 60px;
   width: 80%;
-margin-top: 24px;
+margin-top: 25px;
 margin-left: 30px;
 }
 .login{
@@ -22,7 +22,7 @@ margin-left: 30px;
 .lg{
     margin-top: 41px !important;
     margin-left: 30px;
-    width: 80% !important;
+    width: 82% !important;
 }
 
 

@@ -9,15 +9,22 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import Login from "./User/Login";
 import Registration from "./User/Registration";
 import Studenthomepage from "./User/Studenthomepage";
+import Instructorhomepage from "./Instructor/Instructorhomepage";
 import Sidebar from "./User/components/Sidebar";
 import Overview from "./User/pages/All_Courses";
 
 //  import Team from "./User/pages/Setting";
 import All_Courses from "./User/pages/All_Courses";
 import My_Courses from "./User/pages/My_Courses";
+import Instructor_All_Courses from "./Instructor/pages/All_Courses";
+import Instructor_Add_Courses from "./Instructor/pages/Instructor_Add_Courses";
+import Add_Courses from "./Instructor/pages/Instructor_Add_Courses";
 // import Courses from "./User/pages/All_Courses";
-import Setting from "./User/pages/Settings";
 import Logout from "./User/pages/Logout";
+// import Logout from "./Instructor/pages/Logout";
+import Setting from "./User/pages/Settings";
+import Instructor_Setting from "./Instructor/pages/Instructor_Settings";
+// import Setting from "./Instructor/pages/Settings";
 
  export default  function App(){
     return<>
@@ -39,11 +46,16 @@ pauseOnHover
         <Route exact path="/" element={<Login/>}/>
         <Route exact path="/register" element={<Registration/>}/>
         <Route exact path="/studenthomepage" element={<Studenthomepage/>}/>
+        <Route exact path="/instructorhomepage" element={<Instructorhomepage/>}/>
    
         <Route path="/all_courses" exact element={<All_Courses/>} />
+        <Route path="/instructor_all_courses" exact element={<Instructor_All_Courses/>} />
         <Route path="/my_courses" exact element={<My_Courses/>} />
+        <Route path="/instructor_add_courses" exact element={<Instructor_Add_Courses/>} />
       
 <Route path="/setting" exact element={<Setting/>} />
+<Route path="/instructor_setting" exact element={<Instructor_Setting/>} />
+
 <Route path="/logout" exact element={<Logout/>} />
       </Routes>
       </BrowserRouter>
