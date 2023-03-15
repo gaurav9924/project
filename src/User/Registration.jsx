@@ -9,13 +9,14 @@ import { useNavigate, NavLink } from "react-router-dom";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useFormik } from "formik";
 import { signUpSchema } from "../schemas";
+import { number } from "yup";
 
 const initialValues = {
   fullName: "",
   email: "",
   password: "",
   confirm_password: "",
-  role: 0,
+  roleId: ""
 };
 const Registration = () => {
   const [loading, setLoading] = useState(false);
@@ -61,33 +62,43 @@ const Registration = () => {
       validationSchema: signUpSchema,
 
       onSubmit: (values, action) => {
-        toast.success("User Registered");
+        debugger;
+
+     
+        fetch("https://localhost:7037/api/Login/SignUp", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }).then((result) => {
+          // console.log("result", result);
+          result.json().then((resp) => {
+            // debugger
+            console.log("resp", resp);
+      
+            if (resp.isSuccess == true) {
+              // debugger;
+              toast.success("User Registered");
+                 navigate("/");
+            }else{
+              toast.error(resp.message)
+            }
+         
+          });
+
 
         //  console.log(posts)
-        // navigate("/");
+      
         console.log(values);
         action.resetForm();
       },
-    });
+        )
+    }
 
-  function saveUser() {
-    let totalData = values ;
-    // debugger;
-    console.log(totalData);
-    fetch("https://localhost:7037/api/Login/SignUp", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(totalData),
-    }).then((result) => {
-      // console.log("result", result);
-      result.json().then((resp) => {
-        console.log("resp", resp);
-      });
-    });
-  }
+ 
+    })
   const navigate = useNavigate();
 
   return (
@@ -164,8 +175,8 @@ const Registration = () => {
           <div className="txt form-group">
             <select
               className="form-select shadow  bg-light text-dark p-2 mb-3 mt-4 rounded"
-              name="role"
-              value={values.role}
+              name="roleId"
+              value={values.roleId}
               onChange={handleChange}
               onBlur={handleBlur}
               aria-label="Default select example"
@@ -181,7 +192,7 @@ const Registration = () => {
           <button
             type="submit "
             className="btn btn-primary shadow  rg p-2 mb-5 rounded"
-            onClick={saveUser}
+            // onClick={saveUser}
             // onClick={handleSubmitForm}
           >
             Register Now

@@ -10,7 +10,7 @@ import { signUpSchema } from "../schemas";
 const initialValues = {
   email: "",
   password: "",
-  confirm_password: "",
+  
 };
 
 const Login = () => {
@@ -19,25 +19,74 @@ const Login = () => {
       initialValues: initialValues,
       validationSchema: signUpSchema,
 
-
-      onSubmit: (values, action) => {
-        debugger
+      onSubmit: (values,action) => {
+        debugger;
         toast.success("Login Successfull");
-       
+
         console.log(values);
         action.resetForm();
       },
     });
 
-    const handleSubmitForm=()=>{
-      if (values.email!=="" && values.password!==""&& values.confirm_password!==""){
-console.log(values)
-toast.success("User Login Successfull ")}
-  // navigate("/my_courses")
+  const handleSubmitForm = () => {
+    if (
+      values.email !== "" &&
+      values.password !== "" &&
+      values.confirm_password !== ""
+    ) {
+      console.log(values);
+
+      fetch("https://localhost:7037/api/Login/Login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+
+        }, 
+        body: JSON.stringify(values),
+      }).then((result) => {
+        // console.log("result", result);
+        result.json().then((resp) => {
+          // debugger
+          console.log("resp", resp);
+          // console.log(resp.data.roleType)
+
+          if (resp.isSuccess == true) {
+
+            localStorage.setItem('tokenData', resp.data.token)
+            localStorage.setItem('loginId', resp.data.loginId)
+
+            localStorage.getItem('tokenData')
+
+            if(resp.data.roleId==1){
+              // navigate("/admin")
+            }else if(resp.data.roleId==2){
+              navigate("/instructorhomepage")
+            }
+            else if(resp.data.roleId==3){
+              navigate("/studenthomepage")
+            }
+
+            // debugger;
+            toast.success("User Login Successfull ")
+
+          }else{
+            toast.error(resp.message)
+          }
+        });
+
+        //  console.log(posts)
+
+        console.log(values);
+       
+      });
+
+      // toast.success("User Login Successfull ")
     }
+    // navigate("/my_courses")
+  };
 
   const navigate = useNavigate();
-
 
   return (
     <>
@@ -74,26 +123,11 @@ toast.success("User Login Successfull ")}
               <p className="form-error-lg">{errors.password}</p>
             ) : null}
           </div>
-          <div className=" txt-login fs-5 form-group">
-            <span className=" inptxt"> Confirm Password</span>
-            <input
-              type="password"
-              name="confirm_password"
-              value={values.confirm_password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className="form-control shadow  bg-white p-2 mb-5 rounded"
-              placeholder="Confirm Your Password"
-            />
-            {errors.confirm_password && touched.confirm_password ? (
-              <p className="form-error-lg">{errors.confirm_password}</p>
-            ) : null}
-          </div>
+          
           <button
             type="submit"
             className="btn btn-primary lg shadow   p-2  rounded"
             onClick={handleSubmitForm}
-           
           >
             Login
           </button>
