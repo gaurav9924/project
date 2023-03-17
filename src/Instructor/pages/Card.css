@@ -1,0 +1,16 @@
+.course_capacity_text{
+    margin-left: 180px;
+    margin-top: -18px;
+}
+.edit_button{
+    width: 70px !important;
+    margin-top: 18px;
+    margin-left: 1px;
+    text-decoration: none;
+}
+.add_material_btn{
+    width: 130px !important;
+    margin-top: 18px;
+    margin-left: 105px;
+    text-decoration: none;
+}

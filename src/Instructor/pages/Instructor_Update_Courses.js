@@ -19,7 +19,7 @@ const initialValues = {
   
 };
 
-const Instructor_Add_Courses = () => {
+const Instructor_Update_Courses = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
@@ -99,7 +99,7 @@ const Instructor_Add_Courses = () => {
             className="text-center shadow pb-2"
             style={{ color: "#c30d0d", fontFamily: "auto" }}
           >
-            Add Courses 
+            Update Courses
           </h1>
 
           <div className="col-sm-8 bg-light shadow p-5 add">
@@ -127,7 +127,7 @@ const Instructor_Add_Courses = () => {
                 </p>
               </div>
               <button type="submit" className="btn btn-primary mt-4 btn_add">
-                Add Course
+                Update Course
               </button>
             </form>
           </div>
@@ -137,4 +137,4 @@ const Instructor_Add_Courses = () => {
   );
 };
 
-export default Instructor_Add_Courses;
+export default Instructor_Update_Courses;

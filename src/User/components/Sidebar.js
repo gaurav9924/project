@@ -9,6 +9,7 @@ import { IconContext } from 'react-icons/lib';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Sidebar.css"
+// import img from '../../public/images/imgProfile.jpg'
 
 
 const Nav = styled.div`
@@ -85,6 +86,16 @@ const Sidebar = () => {
         <NavLink className='headertext' to="/all_courses" style={{textDecoration:"none" ,color:"white"}}> All Courses</NavLink></div>
         <div  className='col-sm-3 ms-5'> <NavLink to="/my_courses" className='headertext' style={{textDecoration:"none" ,color:"white"}}> My Courses</NavLink></div></div>
 
+      </div>
+      <div className='col-sm-3'>
+     
+     <div className='row'>
+     <div className=' im '>
+  
+ <p className='text-light user'>Username</p>
+       <img src="/images/imgProfile.jpg" className='img1'/>
+               </div>
+     </div>
       </div>
       </div>
       </div>

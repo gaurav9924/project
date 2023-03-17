@@ -1,0 +1,51 @@
+.add{
+    height: 500px;
+    width: 647px;
+    margin: auto;
+}
+.course{
+    font-size: 20px;
+margin-left: -43px;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+.course_input{
+    height: 40px;
+    width: 340px;
+    margin-left: 46px;
+}
+
+.course_desc{
+    margin-left: 29px;
+    font-size: 12px;
+    height: 80px;
+    width: 340px;
+}
+.course_capacity{
+    height: 40px;
+    width: 340px;
+    }
+
+ .btn_add{
+width: 130px !important;
+height: 50px;
+margin-left: 375px;
+
+ }   
+
+ .material_name{
+    height: 40px;
+    width: 340px;
+    margin-left: 46px;
+    margin-top: 20px !important;
+ }
+ .material{
+    font-size: 20px;
+    margin-left: -63px;
+        font-family:Georgia, 'Times New Roman', Times, serif
+ }
+ .material_desc{
+    margin-left: 29px;
+    font-size: 12px;
+    height: 80px;
+    width: 340px;
+}

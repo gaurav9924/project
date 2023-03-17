@@ -16,7 +16,7 @@ const initialValues = {
   email: "",
   password: "",
   confirm_password: "",
-  roleId: ""
+  roleId: "",
 };
 const Registration = () => {
   const [loading, setLoading] = useState(false);
@@ -64,7 +64,6 @@ const Registration = () => {
       onSubmit: (values, action) => {
         debugger;
 
-     
         fetch("https://localhost:7037/api/Login/SignUp", {
           method: "POST",
           headers: {
@@ -77,28 +76,23 @@ const Registration = () => {
           result.json().then((resp) => {
             // debugger
             console.log("resp", resp);
-      
+
             if (resp.isSuccess == true) {
               // debugger;
               toast.success("User Registered");
-                 navigate("/");
-            }else{
-              toast.error(resp.message)
+              navigate("/");
+            } else {
+              toast.error(resp.message);
             }
-         
           });
 
+          //  console.log(posts)
 
-        //  console.log(posts)
-      
-        console.log(values);
-        action.resetForm();
+          console.log(values);
+          action.resetForm();
+        });
       },
-        )
-    }
-
- 
-    })
+    });
   const navigate = useNavigate();
 
   return (
@@ -181,6 +175,7 @@ const Registration = () => {
               onBlur={handleBlur}
               aria-label="Default select example"
             >
+               <option selected>Who Are You</option>
               {posts.map((item, index) => (
                 <option value={item.id} key={item.id}>
                   {item.roleName}

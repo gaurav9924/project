@@ -12,14 +12,14 @@ import { useFormik } from "formik";
 
 const initialValues = {
   
-    courseName: "",
-    courseDesc: "",
+  materialName: "",
+  materialDesc: "",
    
-    courseCapacity: 0
+  file_Base64: ""
   
 };
 
-const Instructor_Add_Courses = () => {
+const Instructor_AddCourse_Material = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
@@ -99,35 +99,35 @@ const Instructor_Add_Courses = () => {
             className="text-center shadow pb-2"
             style={{ color: "#c30d0d", fontFamily: "auto" }}
           >
-            Add Courses 
+            Add Courses Material
           </h1>
 
           <div className="col-sm-8 bg-light shadow p-5 add">
             <form onSubmit={handleSubmit}>
               <div className="row ms-5">
-                <p className="course">
-                  Course Name:
-                  <input type="text"   name="courseName" onChange={handleChange}
+                <p className="course " style={{fontSize:"18px"}}>
+                  Material Name:
+                  <input type="text"   name="materialName" onChange={handleChange}
                       onBlur={handleBlur}   value={values.courseName} className="course_input ms-4" />
                 </p>
               </div>
 
               <div className="row ms-5 mt-1">
-                <p className="course mt-2">
-                  Course Desc :<input type="text"name="courseDesc" onChange={handleChange}
+                <p className="course mt-4"  style={{fontSize:"18px"}}>
+                  Material Desc :<input type="text"name="materialDesc" onChange={handleChange}
                       onBlur={handleBlur}   value={values.courseDesc}  className="course_desc " />
                 </p>
               </div>
             
-              <div className="row ms-5 mt-1">
-                <p className="course mt-2">
-                  Course Capacity:
-                  <input type="number"name="courseCapacity" onChange={handleChange}
+              <div className="row  mt-1">
+                <p className="course mt-2" style={{fontSize:"18px",marginLeft:"60px"}}>
+                  File:
+                  <input type="file"name="file_Base64" style={{marginLeft:"100px"}} onChange={handleChange}
                       onBlur={handleBlur}   value={values.courseCapacity}  className="course_capacity " />
                 </p>
               </div>
-              <button type="submit" className="btn btn-primary mt-4 btn_add">
-                Add Course
+              <button type="submit" className="btn btn-primary mt-4 btn_add" >
+                Add Material
               </button>
             </form>
           </div>
@@ -137,4 +137,4 @@ const Instructor_Add_Courses = () => {
   );
 };
 
-export default Instructor_Add_Courses;
+export default Instructor_AddCourse_Material ;

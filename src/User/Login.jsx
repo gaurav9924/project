@@ -10,7 +10,6 @@ import { signUpSchema } from "../schemas";
 const initialValues = {
   email: "",
   password: "",
-  
 };
 
 const Login = () => {
@@ -19,7 +18,7 @@ const Login = () => {
       initialValues: initialValues,
       validationSchema: signUpSchema,
 
-      onSubmit: (values,action) => {
+      onSubmit: (values, action) => {
         debugger;
         toast.success("Login Successfull");
 
@@ -41,8 +40,7 @@ const Login = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-
-        }, 
+        },
         body: JSON.stringify(values),
       }).then((result) => {
         // console.log("result", result);
@@ -52,33 +50,32 @@ const Login = () => {
           // console.log(resp.data.roleType)
 
           if (resp.isSuccess == true) {
+            localStorage.setItem("tokenData", resp.data.token);
+            debugger;
+            localStorage.setItem("UserId", resp.data.userId);
+            //  localStorage.setItem("studentId", resp.data.studentId);
+            // console.log(resp.data.studentId)
 
-            localStorage.setItem('tokenData', resp.data.token)
-            localStorage.setItem('loginId', resp.data.loginId)
+            localStorage.getItem("tokenData");
 
-            localStorage.getItem('tokenData')
-
-            if(resp.data.roleId==1){
+            if (resp.data.roleId == 1) {
               // navigate("/admin")
-            }else if(resp.data.roleId==2){
-              navigate("/instructorhomepage")
-            }
-            else if(resp.data.roleId==3){
-              navigate("/studenthomepage")
+            } else if (resp.data.roleId == 2) {
+              navigate("/instructor_All_Courses");
+            } else if (resp.data.roleId == 3) {
+              navigate("/studenthomepage");
             }
 
             // debugger;
-            toast.success("User Login Successfull ")
-
-          }else{
-            toast.error(resp.message)
+            toast.success("User Login Successfull ");
+          } else {
+            toast.error(resp.message);
           }
         });
 
         //  console.log(posts)
 
         console.log(values);
-       
       });
 
       // toast.success("User Login Successfull ")
@@ -123,7 +120,7 @@ const Login = () => {
               <p className="form-error-lg">{errors.password}</p>
             ) : null}
           </div>
-          
+
           <button
             type="submit"
             className="btn btn-primary lg shadow   p-2  rounded"

@@ -6,30 +6,31 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
 
-
 const All_Courses = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   useEffect(() => {
+    debugger;
     const loadPost = async () => {
-      // Till the data is fetch using API
-      // the Loading page will show.
-      setLoading(true);
+      var tokenData=  localStorage.getItem('tokenData')
+      // setLoading(true);
 
-      // Await make wait until that
-      // promise settles and return its result
       const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts/"
+        "https://localhost:7037/api/Course/GetAllPublishedCourse",{
+          headers: {
+            "Authorization":`Bearer ${tokenData}`
+          }
+        }
       );
+      debugger;
+      console.log(response);
+      debugger;
 
-      // After fetching data stored it in posts state.
       setPosts(response.data);
 
-      // Closed the loading page
-      setLoading(false);
+      // setLoading(false);
     };
 
-    // Call the function
     loadPost();
   }, []);
 
@@ -37,10 +38,15 @@ const All_Courses = () => {
     <>
       <div className="home">
         <Sidebar />
-<div className="container  my-3 t">
-        <h1 className="text-center shadow pb-2" style={{color:"#c30d0d",fontFamily:"auto"}}>All Courses</h1>
-      
-        <div className="row mt-3">
+        <div className="container  my-3 t">
+          <h1
+            className="text-center shadow pb-2"
+            style={{ color: "#c30d0d", fontFamily: "auto" }}
+          >
+            All Courses
+          </h1>
+
+          {/* <div className="row mt-3">
           {loading ? (
             <h4>Loading...</h4>
           ) : (
@@ -52,8 +58,8 @@ const All_Courses = () => {
               }
             )
           )}
+        </div> */}
         </div>
-      </div>
       </div>
     </>
   );
@@ -61,10 +67,7 @@ const All_Courses = () => {
 
 export default All_Courses;
 
-
-
 // const My_Courses = () => {
-
 
 //   useEffect(() => {
 //     const loadPost = async () => {
@@ -95,7 +98,7 @@ export default All_Courses;
 //         <Sidebar />
 // <div className="container  my-3 t">
 //         <h1 className="text-center shadow pb-2" style={{color:"#c30d0d",fontFamily:"auto"}}>My Courses</h1>
-      
+
 //         <div className="row mt-3">
 //           {loading ? (
 //             <h4>Loading...</h4>
@@ -116,4 +119,3 @@ export default All_Courses;
 // };
 
 // export default My_Courses;
-

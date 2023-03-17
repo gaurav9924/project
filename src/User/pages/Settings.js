@@ -1,66 +1,149 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import Sidebar from "../components/Sidebar";
 import "./Setting.css";
 import { toast } from "react-toastify";
 import { useNavigate, NavLink } from "react-router-dom";
+// import { signUpSchema } from "../../schemas";
 
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useFormik } from "formik";
 
 const initialValues = {
-  mobile: "",
+ fullName:"",
+  mobile: 0,
   college: "",
   address: "",
- gender:"",
- profilePic:"",
-
+  gender: "",
+  profilePic: null,
 };
 
 const Setting = () => {
+  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+
+  const [postImage, setPostImage] = React.useState({
+
+    myFile: null,
+    
+    profilePic: null
+    });
+
+
+    const convertToBase64 = (file) => {
+debugger
+      return new Promise((resolve, reject) => {
+      
+        const fileReader = new FileReader();
+      
+        fileReader.readAsDataURL(file);
+      
+        fileReader.onload = () => {
+      
+          resolve(fileReader.result);
+      
+        };
+      
+        fileReader.onerror = (error) => {
+      
+          reject(error);
+      
+        };
+      
+      });
+      };
+
+
+
+      const handleFileUpload = async (e) => {
+debugger
+        const file = e.target.files[0];
+        
+        const base64 = await convertToBase64(file);
+        
+        setPostImage({ ...postImage, myFile: base64, profilePic: base64 });
+        };
+
+  useEffect(() => {
+    const loadPost = async () => {
+      var tokenData = localStorage.getItem("tokenData");
+      var UserId = localStorage.getItem("UserId");
+      setLoading(true);
+
+      const response = await axios.get(
+        `https://localhost:7037/api/Student/GetStudentByLoginId?UserId=${UserId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${tokenData}`,
+          },
+        }
+      );
+
+      const success = response;
+      // debugger;
+      // setPosts(response.data.data);
+      setPosts(success.data.data);
+      // console.log(success.data.data.fullName);
+      initialValues.fullName=posts.fullName
+
+      setLoading(false);
+    };
+
+    loadPost();
+  }, []);
 
   const { values, errors, handleBlur, handleChange, touched, handleSubmit } =
     useFormik({
       initialValues: initialValues,
+      // validationSchema: signUpSchema,
 
       onSubmit: (values, action) => {
-        debugger
-        values.loginId=  localStorage.getItem('loginId')
-       var tokenData=  localStorage.getItem('tokenData')
-      
-        // debugger;
+        debugger;
+        values.UserId = localStorage.getItem("UserId");
+        var tokenData = localStorage.getItem("tokenData");
+        values.profilePic=postImage.profilePic
+        // console.log(postImage);
 
-debugger
-        fetch("https://localhost:7037/api/Student/SaveStudentDetails", {
-          method: "POST",
+        // debugger;
+      
+    debugger
+     
+      
+
+        debugger;
+        fetch("https://localhost:7037/api/Student/UpdateStudentDetails", {
+          method: "PUT",
           headers: {
-            'Content-type': 'application/json',
-            "Authorization":`Bearer ${tokenData}`
+            "Content-type": "application/json",
+            Authorization: `Bearer ${tokenData}`,
           },
           body: JSON.stringify(values),
         }).then((result) => {
-          debugger
+          debugger;
           // console.log("result", result);
           result.json().then((resp) => {
             // debugger
             console.log("resp", resp);
-            
 
-            // if (resp.isSuccess == true) {
-            //   // debugger;
-            //   toast.success("User Registered");
-            // } else {
-            //   toast.error(resp.message);
-            // }
+             if (resp.isSuccess == true) {
+            //    debugger;
+               toast.success("User Updated Successfully");
+             } else {
+               toast.error(resp.message);
+             }
           });
 
-        //  console.log(posts)
+          //  console.log(posts)
 
-        console.log(values);
-        action.resetForm();
+          console.log(values);
+          action.resetForm();
+        });
       },
-    );
-    },
-  });
+    });
+
+
 
   return (
     <div className="home">
@@ -84,7 +167,8 @@ debugger
                       name="fullName"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.fullName}
+                      readOnly
+                      value={posts.fullName}
                       className="form-control bg-white p-2 mb-5 rounded"
                       placeholder="Enter Your Full Name"
                     />
@@ -100,7 +184,8 @@ debugger
                       type="email"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.email}
+                      readOnly
+                      value={posts.email}
                       name="email"
                       // value={values.email}
                       // onChange={handleChange}
@@ -137,11 +222,10 @@ debugger
                     <span className=" inptxt">Profile Pic</span>
                     <input
                       type="file"
-                      name="profilePic" 
-                      accept="image/*"
-
+                      name="profilePic"
+                      accept=".jpg, .png|image/*"
                       value={values.profilePic}
-                      onChange={handleChange}
+                      onChange={handleFileUpload}
                       onBlur={handleBlur}
                       className="form-control  bg-white p-2 mb-5 rounded"
                     />
@@ -164,14 +248,12 @@ debugger
                               value="male"
                               onChange={handleChange}
                               onBlur={handleBlur}
-                             
                               className="form-check-input"
                               type="radio"
                               // name="flexRadioDefault"
                               id="flexRadioDefault1"
                             />
                             <label
-                           
                               className="form-check-label"
                               htmlFor="flexRadioDefault1"
                             >
@@ -190,10 +272,8 @@ debugger
                             className="form-check-input"
                             type="radio"
                             id="flexRadioDefault2"
-                         
                           />
                           <label
-                          
                             className="form-check-label"
                             htmlFor="flexRadioDefault2"
                           >

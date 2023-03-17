@@ -16,9 +16,11 @@ import Overview from "./User/pages/All_Courses";
 //  import Team from "./User/pages/Setting";
 import All_Courses from "./User/pages/All_Courses";
 import My_Courses from "./User/pages/My_Courses";
-import Instructor_All_Courses from "./Instructor/pages/All_Courses";
+import Instructor_All_Courses from "./Instructor/pages/Instructor_All_Courses";
 import Instructor_Add_Courses from "./Instructor/pages/Instructor_Add_Courses";
+import Instructor_Update_Courses from "./Instructor/pages/Instructor_Update_Courses";
 import Add_Courses from "./Instructor/pages/Instructor_Add_Courses";
+import Instructor_AddCourse_Material from "./Instructor/pages/Instructor_AddCourse_material";
 // import Courses from "./User/pages/All_Courses";
 import Logout from "./User/pages/Logout";
 // import Logout from "./Instructor/pages/Logout";
@@ -50,6 +52,8 @@ pauseOnHover
    
         <Route path="/all_courses" exact element={<All_Courses/>} />
         <Route path="/instructor_all_courses" exact element={<Instructor_All_Courses/>} />
+        <Route path="/instructor_update_courses" exact element={<Instructor_Update_Courses/>} />
+        <Route path="/instructor_add_coursematerial" exact element={<Instructor_AddCourse_Material/>} />
         <Route path="/my_courses" exact element={<My_Courses/>} />
         <Route path="/instructor_add_courses" exact element={<Instructor_Add_Courses/>} />
       

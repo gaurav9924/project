@@ -7,29 +7,30 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
 
 const My_Courses = () => {
-  const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-
   useEffect(() => {
+    debugger;
     const loadPost = async () => {
-      // Till the data is fetch using API
-      // the Loading page will show.
-      setLoading(true);
+      var tokenData=  localStorage.getItem('tokenData')
+      var studentId=  localStorage.getItem('studentId')
+      // setLoading(true);
 
-      // Await make wait until that
-      // promise settles and return its result
       const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts/"
+       ` https://localhost:7037/api/Course/GetAllEnrollCourse?stdId=${studentId}`,{
+          headers: {
+            "Authorization":`Bearer ${tokenData}`
+          }
+        }
       );
+      debugger;
+      console.log(response);
+      debugger;
 
-      // After fetching data stored it in posts state.
       setPosts(response.data);
 
-      // Closed the loading page
-      setLoading(false);
+      // setLoading(false);
     };
 
-    // Call the function
     loadPost();
   }, []);
 
@@ -40,7 +41,7 @@ const My_Courses = () => {
 <div className="container  my-3 t">
         <h1 className="text-center shadow pb-2" style={{color:"#c30d0d",fontFamily:"auto"}}>My Courses</h1>
       
-        <div className="row mt-3">
+        {/* <div className="row mt-3">
           {loading ? (
             <h4>Loading...</h4>
           ) : (
@@ -54,7 +55,7 @@ const My_Courses = () => {
               }
             )
           )}
-        </div>
+        </div> */}
       </div>
       </div>
     </>
