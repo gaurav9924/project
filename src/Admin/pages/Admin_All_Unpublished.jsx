@@ -1,35 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import Sidebar from "../components/Sidebar";
-import SubMenu from "../components/SubMenu";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Card from "./Card";
+import UnPublished_Card from "./UnPublished_Card";
+import { toast } from "react-toastify";
 
-const All_Courses = () => {
-  // const [loading, setLoading] = useState(false);
+const Admin_All_UnPublished_Course = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     debugger;
     const loadPost = async () => {
-      var tokenData=  localStorage.getItem('tokenData')
+      var tokenData = localStorage.getItem("tokenData");
       // setLoading(true);
 
       const response = await axios.get(
-        "https://localhost:7037/api/Course/GetAllPublishedCourse",{
+        "https://localhost:7037/api/Admin/GetAllCourse?PageNumber=1&PageSize=20",
+        {
           headers: {
-            "Authorization":`Bearer ${tokenData}`
-          }
+            Authorization: `Bearer ${tokenData}`,
+          },
         }
       );
       debugger;
-      console.log(response);
+      // console.log(response);
       debugger;
 
       setPosts(response.data.data);
-      console.log(response.data.data[0].courseId)
+      console.log(response.data.data[0].isPublish);
 
       // setLoading(false);
     };
@@ -37,48 +34,43 @@ const All_Courses = () => {
     loadPost();
   }, []);
 
-   function enrollNow (data){
+  function publishCourse(data) {
     {
-      debugger
-      let enrollData={ }
+      debugger;
+      //   let publishData={ }
       // data.courseId = courseId;
       // values.createdBy_InstId = localStorage.getItem("createdBy_InstId");
-     var tokenData =   localStorage.getItem("tokenData");
-      var studentId=localStorage.getItem("studentId")
-      enrollData.studentId=studentId;
-      enrollData.courseId=data
+      var tokenData = localStorage.getItem("tokenData");
 
-      fetch(
-      "https://localhost:7037/api/Course/EnrollInCourse",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${tokenData}`,
-          },
-          body: JSON.stringify(enrollData),
-        }
-      ).then((result) => {
+      //  publishData.courseId=data
+
+      fetch(`https://localhost:7037/api/Admin/PublishCourse?courseId=${data}`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${tokenData}`,
+        },
+        body: JSON.stringify(data),
+      }).then((result) => {
         debugger;
         // console.log("result", result);
         result.json().then((resp) => {
           // debugger
           console.log("resp", resp);
-  
+
           if (resp.isSuccess == true) {
             //    debugger;
-            toast.success(resp.message);
+            toast.success("Course Published Successfully");
             // navigate("/instructor_all_courses");
             // window.location.reload();
           } else {
             toast.error(resp.message);
           }
         });
-  
+
         //  console.log(posts)
-  
+
         console.log(data);
-        
       });
     }
   }
@@ -92,27 +84,27 @@ const All_Courses = () => {
             className="text-center shadow pb-2"
             style={{ color: "#c30d0d", fontFamily: "auto" }}
           >
-            All Courses
+            All UnPublished Courses
           </h1>
 
-       
           <div className="row mt-3">
             {loading ? (
               <h4>Loading...</h4>
             ) : (
               posts.map((item, index) => {
-                return (
+                //   console.log(item.courseName);
+                return !item.isPublish ? (
                   <div className="col-md-4  mb-4  " key={index}>
-                    <Card
-                       courseName={item.courseName}
+                    <UnPublished_Card
+                      courseName={item.courseName}
                       courseDesc={item.courseDesc}
                       courseCapacity={item.courseCapacity}
-                      publish={item.isPublish}
+                      //   publish={item.isPublish}
                       courseId={item.courseId}
-                      enrollNow={enrollNow}
+                      publishCourse={publishCourse}
                     />
                   </div>
-                );
+                ) : null;
               })
             )}
           </div>
@@ -122,6 +114,4 @@ const All_Courses = () => {
   );
 };
 
-export default All_Courses;
-
-
+export default Admin_All_UnPublished_Course;

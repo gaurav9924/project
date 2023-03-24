@@ -20,13 +20,20 @@ import Instructor_All_Courses from "./Instructor/pages/Instructor_All_Courses";
 import Instructor_Add_Courses from "./Instructor/pages/Instructor_Add_Courses";
 import Instructor_Update_Courses from "./Instructor/pages/Instructor_Update_Courses";
 import Add_Courses from "./Instructor/pages/Instructor_Add_Courses";
-import Instructor_AddCourse_Material from "./Instructor/pages/Instructor_AddCourse_material";
+
 // import Courses from "./User/pages/All_Courses";
 import Logout from "./User/pages/Logout";
 // import Logout from "./Instructor/pages/Logout";
 import Setting from "./User/pages/Settings";
 import Instructor_Setting from "./Instructor/pages/Instructor_Settings";
+import Adminhomepage from "./Admin/Adminhomepage"
+import Admin_All_Courses from "./Admin/pages/Admin_All_Courses";
+import Admin_All_Students from "./Admin/pages/Admin_All_Students";
+import Admin_All_Instructors from "./Admin/pages/Admin_All_Instructors";
+import Admin_All_Published_Course from "./Admin/pages/Admin_All_Published_Course";
+import Admin_All_UnPublished_Course from "./Admin/pages/Admin_All_Unpublished";
 // import Setting from "./Instructor/pages/Settings";
+
 
  export default  function App(){
     return<>
@@ -42,18 +49,27 @@ pauseOnFocusLoss
 draggable
 pauseOnHover 
 />
+
 <BrowserRouter>
       <Routes>
+      
         {/* <Route exact path="/Home" element={<Home/>}/> */}
+  
         <Route exact path="/" element={<Login/>}/>
         <Route exact path="/register" element={<Registration/>}/>
         <Route exact path="/studenthomepage" element={<Studenthomepage/>}/>
         <Route exact path="/instructorhomepage" element={<Instructorhomepage/>}/>
+        <Route exact path="/adminhomepage" element={<Adminhomepage/>}/>
+        <Route exact path="/admin_all_courses" element={<Admin_All_Courses/>}/>
+        <Route exact path="/admin_all_students" element={<Admin_All_Students/>}/>
+        <Route exact path="/admin_all_instructors" element={<Admin_All_Instructors/>}/>
+        <Route exact path="/admin_all_published_course" element={<Admin_All_Published_Course/>}/>
+        <Route exact path="/admin_all_unpublished_course" element={<Admin_All_UnPublished_Course/>}/>
    
         <Route path="/all_courses" exact element={<All_Courses/>} />
         <Route path="/instructor_all_courses" exact element={<Instructor_All_Courses/>} />
         <Route path="/instructor_update_courses" exact element={<Instructor_Update_Courses/>} />
-        <Route path="/instructor_add_coursematerial" exact element={<Instructor_AddCourse_Material/>} />
+      
         <Route path="/my_courses" exact element={<My_Courses/>} />
         <Route path="/instructor_add_courses" exact element={<Instructor_Add_Courses/>} />
       
@@ -63,6 +79,7 @@ pauseOnHover
 <Route path="/logout" exact element={<Logout/>} />
       </Routes>
       </BrowserRouter>
+   
       </>
     
 }

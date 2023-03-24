@@ -1,6 +1,6 @@
 .abc{
     min-height: 592px !important;
-    margin-top: 100px;
+   /* margin-bottom: 100px; */
     width: 480px !important;
 }
 .txt{

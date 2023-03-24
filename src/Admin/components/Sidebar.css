@@ -1,0 +1,30 @@
+.header{
+    background: #15171c;
+}
+.all{
+    margin-left: -95px;
+    line-height: 71px;
+    color: white;
+    text-decoration: none;
+  
+}
+.headertext:hover{
+    
+color: red !important;
+
+}
+.im{
+    height:80px;
+    width: 384px;
+}
+.img1{
+    height: 70px;
+    width: 80px;
+    border-radius: 50%;
+margin-top: -140px;
+margin-left: 194px;
+}
+.user{
+    line-height: 80px;
+    margin-left: 70px;
+}

@@ -1,62 +1,60 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import Sidebar from "../components/Sidebar";
-import SubMenu from "../components/SubMenu";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Card from "./Card";
+import All_Card from "./All_Card";
+import { toast } from "react-toastify";
 
-const All_Courses = () => {
-  // const [loading, setLoading] = useState(false);
+const Admin_All_Courses = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [courseStatus, setCourseStatus] = useState(false)
   useEffect(() => {
     debugger;
     const loadPost = async () => {
-      var tokenData=  localStorage.getItem('tokenData')
+      var tokenData = localStorage.getItem("tokenData");
       // setLoading(true);
 
       const response = await axios.get(
-        "https://localhost:7037/api/Course/GetAllPublishedCourse",{
+        "https://localhost:7037/api/Admin/GetAllCourse?PageNumber=1&PageSize=20",
+        {
           headers: {
-            "Authorization":`Bearer ${tokenData}`
-          }
+            Authorization: `Bearer ${tokenData}`,
+          },
         }
       );
       debugger;
-      console.log(response);
+      // console.log(response);
       debugger;
 
       setPosts(response.data.data);
-      console.log(response.data.data[0].courseId)
+      console.log(response.data.data);
 
       // setLoading(false);
     };
 
     loadPost();
-  }, []);
+  }, [courseStatus]);
 
-   function enrollNow (data){
+  function deleteCourse (data){
     {
       debugger
-      let enrollData={ }
+    //   let publishData={ }
       // data.courseId = courseId;
       // values.createdBy_InstId = localStorage.getItem("createdBy_InstId");
      var tokenData =   localStorage.getItem("tokenData");
-      var studentId=localStorage.getItem("studentId")
-      enrollData.studentId=studentId;
-      enrollData.courseId=data
+     
+    
+    //  publishData.courseId=data
 
       fetch(
-      "https://localhost:7037/api/Course/EnrollInCourse",
+      `https://localhost:7037/api/Course/DeleteCourse?courseId=${data}`,
         {
-          method: "POST",
+          method: "DELETE",
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${tokenData}`,
           },
-          body: JSON.stringify(enrollData),
+          body: JSON.stringify(data),
         }
       ).then((result) => {
         debugger;
@@ -67,7 +65,8 @@ const All_Courses = () => {
   
           if (resp.isSuccess == true) {
             //    debugger;
-            toast.success(resp.message);
+            setCourseStatus(!courseStatus)
+            toast.success("Course Deleted Successfully");
             // navigate("/instructor_all_courses");
             // window.location.reload();
           } else {
@@ -83,6 +82,8 @@ const All_Courses = () => {
     }
   }
 
+
+
   return (
     <>
       <div className="home">
@@ -95,21 +96,21 @@ const All_Courses = () => {
             All Courses
           </h1>
 
-       
           <div className="row mt-3">
             {loading ? (
               <h4>Loading...</h4>
             ) : (
               posts.map((item, index) => {
+                console.log(item.courseName);
                 return (
                   <div className="col-md-4  mb-4  " key={index}>
-                    <Card
-                       courseName={item.courseName}
+                    <All_Card
+                      courseName={item.courseName}
                       courseDesc={item.courseDesc}
                       courseCapacity={item.courseCapacity}
-                      publish={item.isPublish}
-                      courseId={item.courseId}
-                      enrollNow={enrollNow}
+                    //   publish={item.isPublish}
+                        courseId={item.courseId}
+                        deleteCourse={deleteCourse}
                     />
                   </div>
                 );
@@ -122,6 +123,4 @@ const All_Courses = () => {
   );
 };
 
-export default All_Courses;
-
-
+export default Admin_All_Courses;

@@ -7,7 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import Sidebar from "./components/Sidebar";
 
-function Instructorhomepage() {
+function Adminhomepage() {
 
 
   const [loading, setLoading] = useState(false);
@@ -31,11 +31,7 @@ function Instructorhomepage() {
       setPosts(response.data.data);
       // debugger;
       console.log(success.data);
-
-
       // console.log(success.data.data.instructorId);
-
-      
       localStorage.setItem('createdBy_InstId', success.data.data.instructorId)
      console.log( localStorage.getItem('createdBy_InstId'))
 
@@ -54,5 +50,5 @@ function Instructorhomepage() {
   )
 }
 
-export default Instructorhomepage;
+export default Adminhomepage;
 

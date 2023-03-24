@@ -15,7 +15,7 @@ const My_Courses = () => {
     const loadPost = async () => {
       var tokenData = localStorage.getItem("tokenData");
       var studentId = localStorage.getItem("studentId");
-      setLoading(true);
+      // setLoading(true);
 
       const response = await axios.get(
         ` https://localhost:7037/api/Course/GetAllEnrollCourse?stdId=${studentId}`,
@@ -31,7 +31,7 @@ const My_Courses = () => {
 
       setPosts(response.data.data);
 
-      setLoading(false);
+      // setLoading(false);
     };
 
     loadPost();

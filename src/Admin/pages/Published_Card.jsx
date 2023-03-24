@@ -3,8 +3,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Card.css"
 
-function Card(props) {
-  const { courseName, courseDesc, courseCapacity, publish,enrollNow,courseId } = props;
+function Published_Card(props) {
+  const { courseName, courseDesc, courseCapacity, publishCourse,enrollNow,courseId } = props;
   return (
     <>
      
@@ -18,13 +18,13 @@ function Card(props) {
               {" "}
               Course Capacity: {courseCapacity}
             </h6>
-            <button
+            {/* <button
               type="button"
               className="btn btn-primary enroll_button "
-            onClick={()=>enrollNow(courseId)}
+            onClick={()=>publishCourse(courseId)}
             >
-              Enroll Now
-            </button>
+              Publish 
+            </button> */}
             <div className="container  my-3 t"></div>
             
           </div>
@@ -34,4 +34,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default Published_Card;

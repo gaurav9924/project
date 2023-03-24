@@ -99,7 +99,7 @@ const Registration = () => {
     <>
       <div className="App">{/* {loading ? <h4>Loading...</h4> :  } */}</div>
 
-      <div className="container bg-light border border-dark rounded abc p-4 shadow p-3 mb-5 bg-white rounded">
+      <div className="container bg-light border border-dark rounded abc p-4 shadow p-3 mb-5 bg-white rounded" style={{marginTop:"-600px"}}>
         <div className="text-center login mb-3 text-info">Welcome To LMS</div>
         <div className="login fs-5">Register Here</div>
         <form style={{ height: "500px " }} onSubmit={handleSubmit}>

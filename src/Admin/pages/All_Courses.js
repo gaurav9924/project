@@ -67,7 +67,7 @@ const All_Courses = () => {
   
           if (resp.isSuccess == true) {
             //    debugger;
-            toast.success(resp.message);
+            toast.success("Enrolled In Course Successfully");
             // navigate("/instructor_all_courses");
             // window.location.reload();
           } else {

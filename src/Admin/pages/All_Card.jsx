@@ -3,8 +3,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Card.css"
 
-function Card(props) {
-  const { courseName, courseDesc, courseCapacity, publish,enrollNow,courseId } = props;
+function All_Card(props) {
+  const { courseName, courseDesc, courseCapacity, deleteCourse,enrollNow,courseId } = props;
   return (
     <>
      
@@ -20,10 +20,10 @@ function Card(props) {
             </h6>
             <button
               type="button"
-              className="btn btn-primary enroll_button "
-            onClick={()=>enrollNow(courseId)}
+              className="btn btn-danger enroll_button "
+            onClick={()=>deleteCourse(courseId)}
             >
-              Enroll Now
+              Delete
             </button>
             <div className="container  my-3 t"></div>
             
@@ -34,4 +34,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default All_Card;

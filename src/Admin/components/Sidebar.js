@@ -80,11 +80,14 @@ const Sidebar = () => {
         </SidebarNav>
       </IconContext.Provider>
       </div>
-      <div className='col-sm-5 all'>
+      <div className='col-sm-8 all'>
         <div className='row'>
-          <div className='col-sm-3'>
-        <NavLink className='headertext' to="/all_courses" style={{textDecoration:"none" ,color:"white"}}> All Courses</NavLink></div>
-        <div  className='col-sm-3 ms-5'> <NavLink to="/my_courses" className='headertext' style={{textDecoration:"none" ,color:"white"}}> My Courses</NavLink></div></div>
+          <div className='col-sm-2'>
+        <NavLink className='headertext' to="/admin_all_courses" style={{textDecoration:"none" ,color:"white"}}> All Courses</NavLink></div>
+        <div  className='col-sm-4 ms-5'> <NavLink to="/admin_all_published_course" className='headertext' style={{textDecoration:"none" ,color:"white"}}> All Published Course</NavLink></div>
+        <div className='col-sm-5'>
+        <NavLink className='headertext ' to="/admin_all_unpublished_course" style={{textDecoration:"none" ,color:"white"}}> All UnPublished Courses</NavLink></div>
+        </div>
 
       </div>
       <div className='col-sm-3'>

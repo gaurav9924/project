@@ -20,6 +20,7 @@ const Login = () => {
 
       onSubmit: (values, action) => {
         debugger;
+        
         toast.success("Login Successfull");
 
         console.log(values);
@@ -61,7 +62,7 @@ const Login = () => {
             if (resp.data.roleId == 1) {
               // navigate("/admin")
             } else if (resp.data.roleId == 2) {
-              navigate("/instructor_All_Courses");
+              navigate("/instructorhomepage");
             } else if (resp.data.roleId == 3) {
               navigate("/studenthomepage");
             }
